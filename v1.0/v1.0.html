@@ -9,6 +9,9 @@
 
     <title>Ticketgetter</title>
 
+
+    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -21,14 +24,26 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <Style>
-    .main {
-        background-color: white;
-        height: 100px;
-        width: 100px;
-        margin: auto;
-        
-    }
+    .SearchBox {
+        background-color:aqua;
+        margin:auto;
+        margin-top: 10%;
+        border-radius: 25px;
+        padding: 20px;
+        width: 600px;
+        height: 300px;
 
+    }
+    label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+    
 </Style>
 </head>
 
@@ -71,10 +86,27 @@
         </div>
     </nav>
     <!-- End of Navbar! -->
-    <div class="main">
+    <div class="SearchBox">
+        <input type="text" placeholder="Från">
+        <input type="text" placeholder="Till">
+        <label for="start">Utresa:</label>
+        <input type="date" id="start" name="trip-start"
+            value="date"
+            min="date" max="2021-12-31">
+        <label for="start">Retur:</label>
+        <input type="date" id="start" name="trip-start"
+            value="date"
+            min="date" max="2021-12-31">
         <h1></h1>
-        <p></p>
+        <p id="date"></p>
     </div>
+    <script>
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+    </script>
 </body>
 
 </html>
