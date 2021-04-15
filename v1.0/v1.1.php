@@ -92,49 +92,24 @@ if (isset($_POST['search'])) {
   // (B2) DISPLAY RESULTS
   if (count($results) > 0) {
     foreach ($results as $r) {
-      printf("<div>%s - %s</div>", $r['DESTINATION'], $r['DEPARTURE']);
+   
+      echo "<div>";
+      echo "<a href='boka.php?ticknr=". $r['TICKETNUMBER']."'>";
+      echo $r['DESTINATION'];
+      echo " - ";
+      echo $r['DEPARTURE'];
+      echo " - ";
+      echo $r['TICKETNUMBER'];
+      echo " - ";
+      echo $r['REGDATE'];
+      echo "</a>";
+      echo "</div>";
+
     }
   } else { echo "Hittade inga tillgängliga resor"; }
 }
 ?>
-<!--
-<form onsubmit="return fetch();">
-  <h1>SEARCH FOR USERS</h1>
-  <input type="text" id="search" required/>
-  <input type="submit" value="Search"/>
-</form>
--->
-<!-- (B) SEARCH RESULTS -->
-<!--
-<div id="results"></div>
 
-<script>
-function fetch() {
-  // (A) GET SEARCH TERM
-  var data = new FormData();
-  data.append('search', document.getElementById("search").value);
-  data.append('ajax', 1);
- 
-  // (B) AJAX SEARCH REQUEST
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', "2-search.php");
-  xhr.onload = function () {
-    var results = JSON.parse(this.response),
-    wrapper = document.getElementById("results");
-    if (results.length > 0) {
-      wrapper.innerHTML = "";
-      for (let res of results) {
-        let line = document.createElement("div");
-        line.innerHTML = `${res['name']} - ${res['email']}`;
-        wrapper.appendChild(line);
-      }
-    } else { wrapper.innerHTML = "No results found"; }
-  };
-  xhr.send(data);
-  return false;
-}
-</script>
--->
  
 </body>
 
