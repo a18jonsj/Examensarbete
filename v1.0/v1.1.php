@@ -24,86 +24,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-<Style>
-    .body {
-        background-image: url('background.jpg');
-    }
-    .SearchBox {
-        background-color:rgb(255, 255, 255);
-        margin:auto;
-        margin-top: 10%;
-        border-radius: 15px;
-        padding: 20px;
-        width: 600px;
-        text-align: center;
-        
-    }
-
-    .biljett {
-       border: 5px;
-       margin-top: 30px;
-    }
-    .sök {
-        margin-left: 400px;
-        background-color: #564caf;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 50%;
-  opacity: 0.9;
-  
-    }
-
-    #startdate {
-        margin-left: -210px;
-        margin-top:10px;
-        
-    }
-
-    #enddate {
-        margin-left: 160px;
-        margin-top:auto;
-        
-    }
-
-    #utresalabel {
-        margin-left: -300px;
-        margin-top: auto;
-        margin-bottom: 0px;
-        
-    }
-
-    #returresalabel {
-        margin-top: -66px;
-        margin-left: 57px;
-    }
-
-    #antal {
-        margin-top: 40px;
-        margin-left: -220px;
-    }
-
-    #biljettyp {
-        margin-left: 150px;
-        margin-top: -25px;
-    }
-
-    .biljett {
-        margin-left: -200px;
-    }
-    label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
-}
-
-input,
-label {
-    margin: .4rem 0;
-}
-    
-</Style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="body">
@@ -117,7 +38,7 @@ label {
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" onclick="location.href='file:///C:/Users/stett/Downloads/Examensarbete/v1.0/v1.0.html';" href="#">Hem <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -126,7 +47,7 @@ label {
                 <li class="nav-item">
                     <a class="nav-link" href="#">Utrikes</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Sista Minuten</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -138,64 +59,83 @@ label {
                         <a class="dropdown-item" href="#">Chat</a>
                         
                     </div>
-
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Logga in</a>
+                    <a class="nav-link" href="#">Logga in</a>
                 </li>
                 <li class="nav-item ">
-                <a class="nav-link" href="#">Registrera</a>
+                    <a class="nav-link" href="#">Registrera</a>
                 </li>
+
             </ul>
             
         </div>
     </nav>
     <!-- End of Navbar! -->
-    <div class="SearchBox">
-        <input id="from" type="text" placeholder="Från">
-        <input id="too" type="text" placeholder="Till">
-        <div id="utreseid">
-            <h6 for="start" id="utresalabel">Utresa:</h6>
-            <input type="date" id="startdate" name="trip-end"
-            value="date"
-            min="date" max="2021-12-31">
-        </div>
-        
-        <h6 for="start" id="returresalabel">Retur:</h6>
-        <input type="date" id="enddate" name="trip-end"
-            value="date"
-            min="date" max="2021-12-31">
-        
-        <form name="menyform" id="antal">
-            <select name="listmeny" onChange="dropdownmeny()">
-            
-            <option href="#">Antal resenärer</option>
-            <option href="#">1</option>
-            <option href="#">2</option>
-            <option href="#">3</option>
-            <option href="#">4</option>
-            </select>
-            </form>
+    
+    <form action="v1.1.php" method="POST">
+    <div class="container">
+      <h1>Sök resa</h1>
+      <label for="email"><b>Avresa</b></label>
+      <input type="text" placeholder="Sök Stad" name="search" id="email" required>
+    <!--  <label for="psw"><b>Hemresa</b></label>
+      <input type="text" placeholder="Sök stad" name="search" id="psw" required>
+      <input type="submit" class="registerbtn" value="Sök">
+    </div> -->
+  </form>
+  <?php
+// (B) PROCESS SEARCH WHEN FORM SUBMITTED
+if (isset($_POST['search'])) {
+  // (B1) SEARCH FOR USERS
+  require "2-search.php";
 
-            <form name="menyform" class="biljett" id="biljettyp">
-                <select name="listmeny" onChange="dropdownmeny()">
-                
-                <option href="#">Biljettyp</option>
-                <option href="#">Ekonomi</option>
-                <option href="#">Business</option>
-                <option href="#">Ekonomi plus</option>
-                <option href="#">Första klass</option>
-                </select>
-                </form>
+  // (B2) DISPLAY RESULTS
+  if (count($results) > 0) {
+    foreach ($results as $r) {
+      printf("<div>%s - %s</div>", $r['DESTINATION'], $r['DEPARTURE']);
+    }
+  } else { echo "Hittade inga tillgängliga resor"; }
+}
+?>
+<!--
+<form onsubmit="return fetch();">
+  <h1>SEARCH FOR USERS</h1>
+  <input type="text" id="search" required/>
+  <input type="submit" value="Search"/>
+</form>
+-->
+<!-- (B) SEARCH RESULTS -->
+<!--
+<div id="results"></div>
 
-                <button class="sök" onclick="location.href='http://localhost:3306/v1.0/v1.1.html';">Sök</button>
-                <p id="demo"></p>
-    </div>
-
-  
-
-   
-   
+<script>
+function fetch() {
+  // (A) GET SEARCH TERM
+  var data = new FormData();
+  data.append('search', document.getElementById("search").value);
+  data.append('ajax', 1);
+ 
+  // (B) AJAX SEARCH REQUEST
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', "2-search.php");
+  xhr.onload = function () {
+    var results = JSON.parse(this.response),
+    wrapper = document.getElementById("results");
+    if (results.length > 0) {
+      wrapper.innerHTML = "";
+      for (let res of results) {
+        let line = document.createElement("div");
+        line.innerHTML = `${res['name']} - ${res['email']}`;
+        wrapper.appendChild(line);
+      }
+    } else { wrapper.innerHTML = "No results found"; }
+  };
+  xhr.send(data);
+  return false;
+}
+</script>
+-->
+ 
 </body>
 
 </html>
