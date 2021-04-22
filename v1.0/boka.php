@@ -1,6 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
+if (!isset( $_GET['ticknr'])){
+    header("location: v1.1.php");
+}
 
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,15 +28,10 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
-
-  <link rel="stylesheet" href="style.css">
-    
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="body">
-
-    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="v1.1.php">Ticketgetter</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,21 +43,20 @@
                     <a class="nav-link"  href="v1.1.php">Sök resa <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="v2.1.php">Alla resor</a>
+                    <a class="nav-link" href="#">Inrikes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="v2.2.php">Utvalda</a>
-                    </li>
-                <li class="nav-item active">
+                <a class="nav-link" href="v2.2.php">Utvalda</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="v1.1_login.html">Logga in</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="v1.1_register.html">Registrera</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" onclick="stopTimer()" href="logout.php">Logga ut</a>
+                    <a class="nav-link" href="logout.php">Logga ut</a>
                 </li>
-
                 <li>
                     <div id="timer">
                         00:00:00
@@ -70,28 +68,31 @@
         </div>
     </nav>
     <!-- End of Navbar! -->
-    
-<form action="login.php" method="POST">
+<form>
     <div class="container">
-      <h1>Logga in</h1>
-   
+    <h1>Din biljett</h1>
+      <hr>
+      <label for="Personnummer"><b>Personnummer</b></label>
+      <input type="text" value="<?php echo $_SESSION['ssn'] ?>" name="pnr" id="pnr">
+      
+
+      <label for="förnamn"><b>Förnamn</b></label>
+      <input type="text" value=" <?php echo $_SESSION['namn'] ?>" name="Förnamn" id="Förnamn" required>
+
+      <label for="Efternamn"><b>Efternamn</b></label>
+      <input type="text" value=" <?php echo $_SESSION['efternamn'] ?>" name="Efternamn" id="Efternamn" required>
 
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" id="email" required>
-  
-      <label for="psw"><b>Lösenord</b></label>
-      <input type="password" placeholder="Skriv Lösenord" name="psw" id="psw" required>
-  
-    
-  
-      <input type="submit" onclick="startTimer()" class="registerbtn" value="logga in">
-    </div>
-    
-    <div class="container signin">
-      <p>Har du inte registrerat dig? <a href="v1.1_register.html">Skapa ett konto</a>.</p>
-    </div>
-  </form>
-<script src="main.js"></script>
-</body>
+      <input type="text" value=" <?php echo $_SESSION['email'] ?>" name="email" id="email" required>
 
+      <label for="email"><b>Biljetnummer</b></label>
+      <input type="text" value="<?php echo $_GET['ticknr'] ?>" name="ticketnumber" id="ticketnumber" required>
+      <input type="button" onclick="stopTimer()" class="registerbtn" value="Boka">
+      
+  
+    
+    </div>
+  </form> 
+  <script src="main.js"></script>
+</body>
 </html>

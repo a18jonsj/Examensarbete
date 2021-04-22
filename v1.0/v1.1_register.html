@@ -15,23 +15,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
     
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="body">
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Ticketgetter</a>
+        <a class="navbar-brand" href="v1.1.php">Ticketgetter</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,32 +38,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" onclick="location.href='file:///C:/Users/stett/Downloads/Examensarbete/v1.0/v1.0.html';" href="#">Hem <span class="sr-only">(current)</span></a>
+                    <a class="nav-link"  href="v1.1.php">Sök resa <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inrikes</a>
+                    <a class="nav-link" href="v2.1.php">Alla resor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Utrikes</a>
+                    <a class="nav-link" href="v2.2.php">Utvalda</a>
+                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="v1.1_login.html">Logga in</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Sista Minuten</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Kundservice
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Kontakt</a>
-                        <a class="dropdown-item" href="#">Chat</a>
-                        
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logga in</a>
+                    <a class="nav-link" href="v1.1_register.html">Registrera</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Registrera</a>
+                    <a class="nav-link" onclick="stopTimer()" href="logout.php">Logga ut</a>
+                </li>
+
+                <li>
+                    <div id="timer">
+                        00:00:00
+                    </div>
                 </li>
 
             </ul>
@@ -98,7 +93,7 @@
       <hr>
       <p>Genom att skapa ett konto godkänner du automatiskt våra<a href="#"> Regler och villkor</a>.</p>
   
-      <input type="submit" class="registerbtn">Registrera</input>
+      <input type="submit" class="registerbtn" value="Registrera">
     </div>
     
     <div class="container signin">
@@ -106,7 +101,7 @@
     </div>
   </form>
   
-  
+  <script src="main.js"></script>
 </body>
 
 </html>

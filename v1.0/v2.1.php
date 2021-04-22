@@ -23,15 +23,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    
-
-  <link rel="stylesheet" href="style.css">
-    
-
+   
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="body">
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="v1.1.php">Ticketgetter</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,13 +41,13 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="v1.1.php">Sök resa <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="v2.1.php">Alla resor</a>
+                <li class="nav-item active">
+                <a class="nav-link" href="v2.1.php">Alla resor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="v2.2.php">Utvalda</a>
-                    </li>
-                <li class="nav-item active">
+                <a class="nav-link" href="v2.2.php">Utvalda</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="v1.1_login.html">Logga in</a>
                 </li>
                 <li class="nav-item ">
@@ -58,39 +56,59 @@
                 <li class="nav-item ">
                     <a class="nav-link" onclick="stopTimer()" href="logout.php">Logga ut</a>
                 </li>
-
                 <li>
                     <div id="timer">
                         00:00:00
                     </div>
                 </li>
-
             </ul>
             
         </div>
     </nav>
     <!-- End of Navbar! -->
     
-<form action="login.php" method="POST">
+    <form action="v2.1.php" method="POST">
     <div class="container">
-      <h1>Logga in</h1>
-   
-
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" id="email" required>
-  
-      <label for="psw"><b>Lösenord</b></label>
-      <input type="password" placeholder="Skriv Lösenord" name="psw" id="psw" required>
-  
-    
-  
-      <input type="submit" onclick="startTimer()" class="registerbtn" value="logga in">
-    </div>
-    
-    <div class="container signin">
-      <p>Har du inte registrerat dig? <a href="v1.1_register.html">Skapa ett konto</a>.</p>
-    </div>
+      <h1>Sök resa</h1>
+      
+      <input type="hidden" placeholder="Sök Stad" name="search" id="test"> 
+      <button value="sök" name="ressearch">Sök</button>
+    <!--  <label for="psw"><b>Hemresa</b></label>
+      <input type="text" placeholder="Sök stad" name="search" id="psw" required>
+      <input type="submit" class="registerbtn" value="Sök">
+    </div> -->
   </form>
+  <?php
+
+if (isset($_POST['search'])) {
+  // sök
+  require "2-search.php";
+
+  // Visa div med resor som hittades
+  if (count($results) > 0) {
+    foreach ($results as $r) {
+   
+      echo "<div>";
+      echo "<a href='boka.php?ticknr=". $r['TICKETNUMBER']."'>";
+      echo $r['DESTINATION'];
+      echo " - ";
+      echo $r['DEPARTURE'];
+      echo " - ";
+      echo $r['TICKETNUMBER'];
+      echo " - ";
+      echo $r['REGDATE'];
+      echo "</a>";
+      echo "</div>";
+
+      
+
+    }
+  } else { echo "Hittade inga tillgängliga resor"; }
+}
+
+
+?>
+
 <script src="main.js"></script>
 </body>
 
