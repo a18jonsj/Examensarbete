@@ -67,69 +67,67 @@
     </nav>
     <!-- End of Navbar! -->
     
-    <form action="v2.1.php" method="POST">
+    <form action="v2.2.php" method="POST">
     <div class="container">
       <h1>Sök resa</h1>
       
       <input type="hidden" placeholder="Sök Stad" name="search" id="test"> 
-      <button type="hidden" value="sök" name="ressearch">Sök</button>
+     <!-- <button type="hidden" value="sök" name="ressearch">Sök</button> -->
       <ul>
         <div id="first">
           <li>
-            <label id="test1" type="submit">Stockholm</label>
+            <button type="submit" value="Stockholm" name="test1">Stockholm</buttton>
           </li>
           <li>
-            <label>Helsingfors</label>
+            <button type="submit" value="Helsingfors" name="test1">Helsingfors</button>
           </li>
           <li>
-            <label>Köpenhamn</label>
-          </li>
-        </div>
-        <div id="second" style="visibility: visible;">
-          <li>
-            <label>Oslo</label>
-          </li>
-          <li>
-            <label>Bogota</label>
-          </li>
-          <li>
-            <label>Bangkok</label>
+            <button type="submit" value="Köpenhamn" name="test1">Köpenhamn</button>
           </li>
         </div>
-        <div id="33">
+        <div id="second">
           <li>
-            <label>Washington</label>
+            <button type="submit" value="Oslo" name="test1">Oslo</button>
           </li>
           <li>
-            <label>Kabul</label>
+            <button type="submit" value="Bogota" name="test1">Bogota</button>
           </li>
           <li>
-            <label>Tirana</label>
+            <button type="submit" value="Bangkok" name="test1">Bangkok</button>
           </li>
         </div>
-        <div id="43">
+        <div id="third">
           <li>
-            <label>Algiers</label>
+            <button type="submit" value="Washington" name="test1">Washington</button>
           </li>
           <li>
-            <label>Andorra la Vella</label>
+            <button type="submit" value="Kabul" name="test1">Kabul</button>
           </li>
           <li>
-            <label>Luanda</label>
+            <button type="submit" value="Tirana" name="test1">Tirana</button>
+          </li>
+        </div>
+        <div id="forth">
+          <li>
+            <button type="submit" value="Algiers" name="test1">Algiers</button>
+          </li>
+          <li>
+            <button type="submit" value="Andorra la Vella" name="test1">Andorra la Vella</button>
+          </li>
+          <li>
+            <button type="submit" value="Luanda" name="test1">Luanda</button>
           </li>
       </div>
       </ul>
 
       <div class="pagination">
-  <a href="#">&laquo;</a>
-  <a onclick="myFunction()" href="#">1</a>
-  <a onclick="myFunction2()" href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a>
-  <a href="#">6</a>
-  <a href="#">&raquo;</a>
-</div>
+  
+        <a onclick="myFunction()" href="#">1</a>
+        <a onclick="myFunction2()" href="#">2</a>
+        <a onclick="myFunction3()" href="#">3</a>
+        <a onclick="myFunction4()" href="#">4</a>
+  
+      </div>
     <!--  <label for="psw"><b>Hemresa</b></label>
       <input type="text" placeholder="Sök stad" name="search" id="psw" required>
       <input type="submit" class="registerbtn" value="Sök">
@@ -137,14 +135,16 @@
   </form>
   <?php
 
-if (isset($_POST['search'])) {
+if (isset($_POST['test1'])) {
   // sök
-  require "2-search.php";
+  echo "<h1>HELLOOO</h1>";
+  
+  require "3-search.php";
 
   // Visa div med resor som hittades
   if (count($results) > 0) {
     foreach ($results as $r) {
-   
+      
       echo "<div>";
       echo "<a href='boka.php?ticknr=". $r['TICKETNUMBER']."'>";
       echo $r['DESTINATION'];
@@ -167,10 +167,30 @@ if (isset($_POST['search'])) {
 ?>
 <script>
 function myFunction() {
-  document.getElementById("first").style.visibility = "hidden";
+  document.getElementById("first").style.visibility = "visible";
+  document.getElementById("second").style.visibility = "hidden";
+  document.getElementById("third").style.visibility = "hidden";
+  document.getElementById("forth").style.visibility = "hidden";
 }
 function myFunction2() {
+  document.getElementById("first").style.visibility = "hidden";
+  document.getElementById("second").style.visibility = "visible";
+  document.getElementById("third").style.visibility = "hidden";
+  document.getElementById("forth").style.visibility = "hidden";
+}
+
+function myFunction3() {
+  document.getElementById("first").style.visibility = "hidden";
   document.getElementById("second").style.visibility = "hidden";
+  document.getElementById("third").style.visibility = "visible";
+  document.getElementById("forth").style.visibility = "hidden";
+}
+
+function myFunction4() {
+  document.getElementById("first").style.visibility = "hidden";
+  document.getElementById("second").style.visibility = "hidden";
+  document.getElementById("third").style.visibility = "hidden";
+  document.getElementById("forth").style.visibility = "visible";
 }
 </script>
 <script src="main.js"></script>

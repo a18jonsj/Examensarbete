@@ -82,11 +82,15 @@ margin-top: 0px;
 
 .pagination a {
     color: black;
-    float: left;
+   
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
+    text-align: center;
+    margin-top: 50px;
+   
+    
   }
   
   .pagination a.active {
@@ -100,8 +104,8 @@ margin-top: 0px;
   #first{
       left: 500px;
       margin-top: 0px;
-      background-color: #4CAF50;
-      text-align: center;
+      
+      
       
       
       
@@ -110,8 +114,24 @@ margin-top: 0px;
   #second{
     left: 0px;
     margin-top: -100px;
-    background-color: #4CAF50;
-    text-align: center;
     position: relative;
+    visibility: hidden;
+}
+
+#third{
+    left: 0px;
+    margin-top: -100px;
+    
+  
+    position: relative;
+    visibility: hidden;
+}
+
+#forth{
+    left: 0px;
+    margin-top: -100px;
+    
+    position: relative;
+    visibility: hidden;
     
 }
